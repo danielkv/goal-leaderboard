@@ -101,7 +101,7 @@ export const SettingsPage: React.FC = () => {
                         control={<Switch defaultChecked />}
                         label="Publicado"
                     />
-                    <LoadingButton variant="contained">Salvar</LoadingButton>
+                    <LoadingButton>Salvar</LoadingButton>
                 </Stack>
             </Stack>
         </Container>

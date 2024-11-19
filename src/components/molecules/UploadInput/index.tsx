@@ -28,7 +28,6 @@ export const UploadInput: React.FC<UploadInputProps> = ({
             <Button
                 component="label"
                 role={undefined}
-                variant="contained"
                 tabIndex={-1}
                 startIcon={<CloudUpload />}
                 {...props}

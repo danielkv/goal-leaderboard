@@ -1,3 +1,4 @@
+import type {} from '@mui/lab/themeAugmentation'
 import { createTheme } from '@mui/material'
 
 export const themeOptions = createTheme({
@@ -28,6 +29,39 @@ export const themeOptions = createTheme({
     },
 
     components: {
+        MuiButtonBase: {
+            styleOverrides: {
+                root: {
+                    '&.MuiButtonBase-root': {
+                        borderRadius: 4,
+                    },
+                },
+            },
+        },
+        MuiTable: {
+            styleOverrides: {
+                root: {
+                    '& .MuiTableCell-root': {
+                        backgroundColor: '#101010 !important',
+                        color: '#F5F5F5',
+                    },
+                    '& .MuiTableCell-head': {
+                        color: '#999',
+                        fontWeight: '400',
+                    },
+                },
+            },
+        },
+        MuiLoadingButton: {
+            defaultProps: {
+                variant: 'contained',
+            },
+        },
+        MuiButton: {
+            defaultProps: {
+                variant: 'contained',
+            },
+        },
         MuiPaper: {
             styleOverrides: {
                 root: { backgroundImage: 'none' },
