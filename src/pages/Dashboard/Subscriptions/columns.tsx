@@ -1,6 +1,7 @@
 import { MRT_ColumnDef } from 'material-react-table'
 import { Subscription } from './types'
 import { Cancel, CheckCircle, WatchLater } from '@mui/icons-material'
+import { formatCurrency } from '@common/helpers/formatCurrency'
 
 export const subscriptionsColumns: MRT_ColumnDef<Subscription>[] = [
     {
@@ -14,6 +15,9 @@ export const subscriptionsColumns: MRT_ColumnDef<Subscription>[] = [
     {
         header: 'Valor',
         accessorKey: 'amount',
+        Cell: ({ cell }) => {
+            return formatCurrency(cell.getValue<number>())
+        },
     },
     {
         header: 'Método',

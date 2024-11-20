@@ -4,6 +4,7 @@ import { MaterialReactTable } from 'material-react-table'
 import { categoriesColumns } from './columns'
 import CategoryActionsCell from './Components/ActionCell'
 import { useCustomTable } from '@common/hooks/useCustomTable'
+import { Add } from '@mui/icons-material'
 
 const data: Category[] = [
     {
@@ -39,7 +40,7 @@ export const CategoriesPage: React.FC = () => {
         enableRowActions: true,
         renderRowActions: CategoryActionsCell,
         renderTopToolbarCustomActions: () => {
-            return <Button variant="outlined">Nova categoria</Button>
+            return <Button startIcon={<Add />}>Nova categoria</Button>
         },
     })
 

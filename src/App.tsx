@@ -11,8 +11,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from 'dayjs'
 import ptBrLocale from 'dayjs/locale/pt-br'
+import duration from 'dayjs/plugin/duration'
 
 dayjs.locale(ptBrLocale)
+dayjs.extend(duration)
 
 function App() {
     return (
