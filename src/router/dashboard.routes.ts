@@ -4,6 +4,7 @@ import { CategoriesPage } from '@pages/Dashboard/Categories'
 import { SubscriptionsPage } from '@pages/Dashboard/Subscriptions'
 import { WorkoutsPage } from '@pages/Dashboard/Workouts'
 import { AccessTime, AccessTimeFilled } from '@mui/icons-material'
+import { CheckinPage } from '@pages/Dashboard/Checkin'
 
 export const dashboardRoutes: RouteObject[] = [
     {
@@ -44,6 +45,7 @@ export const dashboardRoutes: RouteObject[] = [
             {
                 handle: { name: 'Check-in' },
                 path: '/dashboard/event/checkin',
+                Component: CheckinPage,
             },
             {
                 handle: { name: 'Score' },
