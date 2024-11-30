@@ -1,7 +1,7 @@
 import { TableActionCell } from '@common/types/tables'
-import { Category } from '../types'
 import { IconButton, Stack } from '@mui/material'
 import { CopyAll, DeleteOutline, EditOutlined } from '@mui/icons-material'
+import { Category } from '@common/types/category'
 
 const CategoryActionsCell: TableActionCell<Category> = () => {
     return (

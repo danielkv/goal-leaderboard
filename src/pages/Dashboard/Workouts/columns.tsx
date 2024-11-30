@@ -1,7 +1,6 @@
 import { MRT_ColumnDef } from 'material-react-table'
-import { Workout } from './types'
 import { formatResultType } from '@common/helpers/formatResultType'
-import { ResultType } from '@common/types/workout'
+import { ResultType, Workout } from '@common/types/workout'
 
 import { secondsToTime } from '@common/helpers/secondsToTime'
 import { formatWorkoutType } from '@common/helpers/formatWorkoutType'

@@ -30,10 +30,16 @@ const SelectableButtons: React.FC<SelectableButtonsProps> = ({
 }) => {
     return (
         <StyledButton selected={selected} onClick={onClick} fullWidth>
-            <Stack flex={1} padding={2} direction="row" gap={6}>
+            <Stack flex={1} padding={1} direction="row" gap={6}>
                 <Stack direction="row" gap={2} flex={1}>
                     {icon}
-                    <Typography fontWeight="bold">{label}</Typography>
+                    <Typography
+                        fontWeight="bold"
+                        fontSize={14}
+                        sx={{ whiteSpace: 'nowrap' }}
+                    >
+                        {label}
+                    </Typography>
                 </Stack>
                 {count && <Typography fontWeight="bold">{count}</Typography>}
             </Stack>

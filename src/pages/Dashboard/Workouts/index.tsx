@@ -1,5 +1,4 @@
 import { Button, Container, Stack, Typography } from '@mui/material'
-import { Workout } from './types'
 import { MaterialReactTable } from 'material-react-table'
 import { subscriptionsColumns } from './columns'
 
@@ -7,6 +6,7 @@ import { useCustomTable } from '@common/hooks/useCustomTable'
 
 import { Add, CopyAll } from '@mui/icons-material'
 import WorkoutsActionsCell from './Components/ActionCell'
+import { Workout } from '@common/types/workout'
 
 const data: Workout[] = [
     {

@@ -7,7 +7,12 @@ import {
     Stack,
     useTheme,
 } from '@mui/material'
-import { RouteObject, useLocation, useNavigate } from 'react-router-dom'
+import {
+    RouteObject,
+    useLocation,
+    useMatches,
+    useNavigate,
+} from 'react-router-dom'
 
 interface SideMenuProps {
     routeItems: RouteObject[]
@@ -17,6 +22,10 @@ export const SideMenu: React.FC<SideMenuProps> = ({ routeItems }) => {
     const theme = useTheme()
     const navigate = useNavigate()
     const { pathname } = useLocation()
+
+    const matches = useMatches()
+
+    console.log(matches)
 
     return (
         <List disablePadding>

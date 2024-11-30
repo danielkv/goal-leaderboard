@@ -5,6 +5,9 @@ import { SubscriptionsPage } from '@pages/Dashboard/Subscriptions'
 import { WorkoutsPage } from '@pages/Dashboard/Workouts'
 import { AccessTime, AccessTimeFilled } from '@mui/icons-material'
 import { CheckinPage } from '@pages/Dashboard/Checkin'
+import { ScorePage } from '@pages/Dashboard/Score'
+import { ChooseCategoryWorkoutPage } from '@pages/Dashboard/Score/subpages/ChooseCategoryWorkout'
+import { WorkoutScorePage } from '@pages/Dashboard/Score/subpages/WorkoutScore'
 
 export const dashboardRoutes: RouteObject[] = [
     {
@@ -50,6 +53,19 @@ export const dashboardRoutes: RouteObject[] = [
             {
                 handle: { name: 'Score' },
                 path: '/dashboard/event/score',
+                Component: ScorePage,
+                children: [
+                    {
+                        handle: { name: 'Choose Category' },
+                        path: '/dashboard/event/score',
+                        Component: ChooseCategoryWorkoutPage,
+                    },
+                    {
+                        handle: { name: 'Score' },
+                        path: '/dashboard/event/score/:categoryId/:workoutId',
+                        Component: WorkoutScorePage,
+                    },
+                ],
             },
             {
                 handle: { name: 'Leaderboard' },
@@ -58,3 +74,15 @@ export const dashboardRoutes: RouteObject[] = [
         ],
     },
 ]
+
+export const DASHBOARD_PATHS = [
+    '/dashboard/settings',
+    '/dashboard/categories',
+    '/dashboard/subscriptions',
+    '/dashboard/workouts',
+    '/dashboard/event',
+    '/dashboard/event/checkin',
+    '/dashboard/event/score',
+    '/dashboard/event/score/:categoryId/:workoutId',
+    '/dashboard/event/leaderboard',
+] as const

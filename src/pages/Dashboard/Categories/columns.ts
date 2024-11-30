@@ -1,5 +1,5 @@
+import { Category } from '@common/types/category'
 import { MRT_ColumnDef } from 'material-react-table'
-import { Category } from './types'
 
 export const categoriesColumns: MRT_ColumnDef<Category>[] = [
     {
