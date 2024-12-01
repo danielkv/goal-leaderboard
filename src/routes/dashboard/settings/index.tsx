@@ -12,9 +12,10 @@ import { LoadingButton } from '@mui/lab'
 import { DatePicker } from '@mui/x-date-pickers'
 import { UploadInput } from '@components/molecules/UploadInput'
 
-import { MapAutocomplete } from './components/MapAutocomplete'
+import { MapAutocomplete } from './.components/MapAutocomplete'
+import { createFileRoute } from '@tanstack/react-router'
 
-export const SettingsPage: React.FC = () => {
+const SettingsPage: React.FC = () => {
     return (
         <Container maxWidth="lg">
             <Stack gap={2}>
@@ -107,3 +108,7 @@ export const SettingsPage: React.FC = () => {
         </Container>
     )
 }
+
+export const Route = createFileRoute('/dashboard/settings/')({
+    component: SettingsPage,
+})

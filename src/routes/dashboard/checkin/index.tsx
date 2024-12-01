@@ -1,7 +1,6 @@
 import { Box, Button, Container, Stack } from '@mui/material'
-import { Subscription, SubscriptionStatus } from './types'
 import { MaterialReactTable } from 'material-react-table'
-import { subscriptionsColumns } from './columns'
+import { subscriptionsColumns } from './.columns'
 
 import { useCustomTable } from '@common/hooks/useCustomTable'
 import SelectableFilter from '@components/organisms/SelectableFilter'
@@ -12,56 +11,56 @@ import {
     WatchLater,
 } from '@mui/icons-material'
 import { useEffect, useState } from 'react'
+import { Checkin, CheckinStatus } from '@common/types/checkin'
+import { createFileRoute } from '@tanstack/react-router'
 
-const data: Subscription[] = [
+const data: Checkin[] = [
     {
         id: '1',
-        name: 'Elite Masc',
-        amount: 150,
-        category: 'Categoria 1',
-        paymentMethod: 'Cartão de crédito',
-        status: 'paid',
+        name: 'Garrincha',
+        team: 'Time do fera',
+        category: 'Elite Masc',
+        box: 'A',
+        status: CheckinStatus.PENDING,
     },
     {
         id: '2',
-        name: 'Elite Fem',
-        amount: 200,
-        category: 'Categoria 2',
-        paymentMethod: 'Boleto',
-        status: 'pending',
+        name: 'Pelé',
+        team: 'Time do rei',
+        category: 'Elite Masc',
+        box: 'B',
+        status: CheckinStatus.CHECKED,
     },
     {
         id: '3',
-        name: 'RX Misto',
-        amount: 300,
-        category: 'Categoria 3',
-        paymentMethod: 'Pix',
-        status: 'paid',
+        name: 'Marta',
+        team: 'Time das meninas',
+        category: 'Elite Fem',
+        box: 'C',
+        status: CheckinStatus.NOSHOW,
     },
     {
         id: '4',
-        name: 'Scaled Masc',
-        amount: 250,
-        category: 'Categoria 4',
-        paymentMethod: 'Cartão de débito',
-        status: 'canceled',
+        name: 'Zico',
+        team: 'Time do galinho',
+        category: 'Veteranos',
+        box: 'D',
+        status: CheckinStatus.PENDING,
     },
     {
         id: '5',
-        name: 'Interm Fem',
-        amount: 100,
-        category: 'Categoria 5',
-        paymentMethod: 'Transferência bancária',
-        status: 'paid',
+        name: 'Ronaldo',
+        team: 'Time do fenômeno',
+        category: 'Elite Masc',
+        box: 'E',
+        status: CheckinStatus.CHECKED,
     },
 ]
 
-export const SubscriptionsPage: React.FC = () => {
-    const [prefilter, setPrefilter] = useState<SubscriptionStatus | 'all'>(
-        'all'
-    )
+const CheckinPage: React.FC = () => {
+    const [prefilter, setPrefilter] = useState<CheckinStatus | 'all'>('all')
 
-    const [filteredData, setFilteredData] = useState<Subscription[]>(data)
+    const [filteredData, setFilteredData] = useState<Checkin[]>(data)
 
     useEffect(() => {
         setFilteredData(
@@ -73,6 +72,7 @@ export const SubscriptionsPage: React.FC = () => {
 
     const table = useCustomTable({
         columns: subscriptionsColumns,
+
         initialState: {
             sorting: [{ id: 'name', desc: false }],
         },
@@ -90,16 +90,17 @@ export const SubscriptionsPage: React.FC = () => {
         <Container maxWidth="lg">
             <Stack gap={4}>
                 <Box>
-                    <SelectableFilter<Subscription, 'status'>
+                    <SelectableFilter<Checkin, 'status'>
                         currentFilter={prefilter}
                         onClick={(filter) => setPrefilter(filter)}
                         filters={[
                             { label: 'Todos', name: 'all', count: data.length },
                             {
-                                label: 'Pagos',
-                                name: 'paid',
+                                label: 'Confirmados',
+                                name: CheckinStatus.CHECKED,
                                 count: data.filter(
-                                    (item) => item.status === 'paid'
+                                    (item) =>
+                                        item.status === CheckinStatus.CHECKED
                                 ).length,
                                 icon: (
                                     <CheckCircle
@@ -110,24 +111,28 @@ export const SubscriptionsPage: React.FC = () => {
                             },
                             {
                                 label: 'Pendentes',
-                                name: 'pending',
+                                name: CheckinStatus.PENDING,
                                 count: data.filter(
-                                    (item) => item.status === 'pending'
+                                    (item) =>
+                                        item.status === CheckinStatus.PENDING
                                 ).length,
                                 icon: (
                                     <WatchLater
                                         fontSize="small"
-                                        color="warning"
+                                        color="action"
                                     />
                                 ),
                             },
                             {
                                 label: 'Cancelados',
-                                name: 'canceled',
+                                name: CheckinStatus.NOSHOW,
                                 count: data.filter(
-                                    (item) => item.status === 'canceled'
+                                    (item) =>
+                                        item.status === CheckinStatus.NOSHOW
                                 ).length,
-                                icon: <Cancel fontSize="small" color="error" />,
+                                icon: (
+                                    <Cancel fontSize="small" color="warning" />
+                                ),
                             },
                         ]}
                     />
@@ -138,3 +143,7 @@ export const SubscriptionsPage: React.FC = () => {
         </Container>
     )
 }
+
+export const Route = createFileRoute('/dashboard/checkin/')({
+    component: CheckinPage,
+})

@@ -1,4 +1,4 @@
-import { SideMenu } from '@components/organisms/SideMenu'
+import { DashboardSideMenu } from '@components/organisms/DashboardSideMenu'
 import {
     AppBar,
     Box,
@@ -7,18 +7,18 @@ import {
     Toolbar,
     Typography,
 } from '@mui/material'
-import { dashboardRoutes } from '@router/dashboard.routes'
+
 import LOGO_URL from '@assets/images/goal-leaderboard-logo.png'
-import { Outlet, UIMatch, useMatches } from 'react-router-dom'
-import { RouteHandle } from '@common/types/routes'
+
+import { createFileRoute, Outlet } from '@tanstack/react-router'
 
 const LOGO_ALT_TEXT = 'My Goal Leaderboard'
 const DRAWER_WIDTH = 240
 
 export const DashboardLayout: React.FC = () => {
-    const matches = useMatches() as UIMatch<unknown, RouteHandle>[]
+    //const matches = useMatches() as UIMatch<unknown, RouteHandle>[]
 
-    const { name = '' } = matches[matches.length - 1]?.handle || {}
+    const { name = '' } = {} //matches[matches.length - 1]?.handle || {}
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -55,7 +55,7 @@ export const DashboardLayout: React.FC = () => {
                 </Toolbar>
                 <Divider />
                 <Box mt={3}>
-                    <SideMenu routeItems={dashboardRoutes} />
+                    <DashboardSideMenu />
                 </Box>
             </Drawer>
 
@@ -74,3 +74,7 @@ export const DashboardLayout: React.FC = () => {
         </Box>
     )
 }
+
+export const Route = createFileRoute('/dashboard')({
+    component: DashboardLayout,
+})

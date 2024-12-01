@@ -7,41 +7,28 @@ import {
     Stack,
     useTheme,
 } from '@mui/material'
-import {
-    RouteObject,
-    useLocation,
-    useMatches,
-    useNavigate,
-} from 'react-router-dom'
 
-interface SideMenuProps {
-    routeItems: RouteObject[]
-}
+import { useMatchRoute, useNavigate } from '@tanstack/react-router'
+import { dashboardNavigation } from './contants'
 
-export const SideMenu: React.FC<SideMenuProps> = ({ routeItems }) => {
+export const DashboardSideMenu: React.FC = () => {
     const theme = useTheme()
+    const matches = useMatchRoute()
     const navigate = useNavigate()
-    const { pathname } = useLocation()
-
-    const matches = useMatches()
-
-    console.log(matches)
 
     return (
         <List disablePadding>
-            {routeItems.map((item) => (
-                <div key={item.path}>
+            {dashboardNavigation.map((item) => (
+                <div key={`${item.path}${item.label}`}>
                     <ListItem disablePadding>
                         <Stack direction="row" padding="8px 16px">
-                            {item.handle.icon && (
+                            {item.icon && (
                                 <ListItemIcon sx={{ minWidth: 'auto', mr: 1 }}>
-                                    <item.handle.icon />
+                                    <item.icon />
                                 </ListItemIcon>
                             )}
                             <ListItemText
-                                primary={
-                                    item.handle.name || item.id || item.path
-                                }
+                                primary={item.label || item.path}
                                 primaryTypographyProps={{ fontSize: 14 }}
                             />
                         </Stack>
@@ -53,10 +40,10 @@ export const SideMenu: React.FC<SideMenuProps> = ({ routeItems }) => {
                             sx={{ bgcolor: 'background.paper' }}
                         >
                             {item.children.map((subItem) => {
-                                const selected = pathname === subItem.path
+                                const selected = matches({ to: subItem.path })
                                 return (
                                     <ListItem
-                                        key={subItem.path}
+                                        key={`${subItem.path}${subItem.label}`}
                                         disablePadding
                                         sx={{
                                             borderRight: selected
@@ -68,13 +55,12 @@ export const SideMenu: React.FC<SideMenuProps> = ({ routeItems }) => {
                                             sx={{ pl: 4 }}
                                             onClick={() =>
                                                 subItem.path &&
-                                                navigate(subItem.path)
+                                                navigate({ to: subItem.path })
                                             }
                                         >
                                             <ListItemText
                                                 primary={
-                                                    subItem.handle.name ||
-                                                    subItem.id ||
+                                                    subItem.label ||
                                                     subItem.path
                                                 }
                                                 primaryTypographyProps={{

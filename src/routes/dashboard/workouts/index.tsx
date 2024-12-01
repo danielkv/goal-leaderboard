@@ -1,12 +1,13 @@
 import { Button, Container, Stack, Typography } from '@mui/material'
 import { MaterialReactTable } from 'material-react-table'
-import { subscriptionsColumns } from './columns'
+import { subscriptionsColumns } from './.columns'
 
 import { useCustomTable } from '@common/hooks/useCustomTable'
 
 import { Add, CopyAll } from '@mui/icons-material'
-import WorkoutsActionsCell from './Components/ActionCell'
+import WorkoutsActionsCell from './.components/ActionCell'
 import { Workout } from '@common/types/workout'
+import { createFileRoute } from '@tanstack/react-router'
 
 const data: Workout[] = [
     {
@@ -51,7 +52,7 @@ const data: Workout[] = [
     },
 ]
 
-export const WorkoutsPage: React.FC = () => {
+const WorkoutsPage: React.FC = () => {
     const table = useCustomTable({
         columns: subscriptionsColumns,
         enablePagination: false,
@@ -94,3 +95,7 @@ export const WorkoutsPage: React.FC = () => {
         </Container>
     )
 }
+
+export const Route = createFileRoute('/dashboard/workouts/')({
+    component: WorkoutsPage,
+})

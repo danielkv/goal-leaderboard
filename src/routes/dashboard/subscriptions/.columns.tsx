@@ -1,5 +1,5 @@
 import { MRT_ColumnDef } from 'material-react-table'
-import { Subscription } from './types'
+import { Subscription } from './.types'
 import { Cancel, CheckCircle, WatchLater } from '@mui/icons-material'
 import { formatCurrency } from '@common/helpers/formatCurrency'
 

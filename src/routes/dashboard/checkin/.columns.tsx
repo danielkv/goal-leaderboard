@@ -1,6 +1,6 @@
 import { MRT_ColumnDef } from 'material-react-table'
 import { Checkin } from '@common/types/checkin'
-import StatusAction from './components/StatusAction'
+import StatusAction from './.components/StatusAction'
 
 export const subscriptionsColumns: MRT_ColumnDef<Checkin>[] = [
     {

@@ -1,10 +1,11 @@
 import { Button, Container, Stack } from '@mui/material'
 import { MaterialReactTable } from 'material-react-table'
-import { categoriesColumns } from './columns'
-import CategoryActionsCell from './Components/ActionCell'
+import { categoriesColumns } from './.columns'
+import CategoryActionsCell from './.components/ActionCell'
 import { useCustomTable } from '@common/hooks/useCustomTable'
 import { Add } from '@mui/icons-material'
 import { Category } from '@common/types/category'
+import { createFileRoute } from '@tanstack/react-router'
 
 const data: Category[] = [
     {
@@ -27,7 +28,7 @@ const data: Category[] = [
     },
 ]
 
-export const CategoriesPage: React.FC = () => {
+const CategoriesPage: React.FC = () => {
     const table = useCustomTable({
         columns: categoriesColumns,
         initialState: {
@@ -52,3 +53,10 @@ export const CategoriesPage: React.FC = () => {
         </Container>
     )
 }
+
+export const Route = createFileRoute('/dashboard/categories/')({
+    component: CategoriesPage,
+    staticData: {
+        name: 'Categorias',
+    },
+})
